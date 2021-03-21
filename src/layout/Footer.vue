@@ -5,6 +5,7 @@
         </div>
 
         <div class="footer__delete-card"
+             :class="{'footer__delete-card--revealed': cardIsDragged}"
              @dragenter.prevent="cardWithin"
              @dragover.prevent="cardWithin"
              @dragleave.prevent="cardOutside"
@@ -46,6 +47,11 @@
                 githubLink: "https://github.com/Vemrthiss/kanban-board",
                 emailLink: "mailto:joeltwh1999@gmail.com",
                 cardOverTrash: false
+            }
+        },
+        computed: {
+            cardIsDragged() {
+                return this.$store.getters.getDragStatus;
             }
         },
         methods: {
@@ -96,6 +102,11 @@
             top: 0;
             left: 50%;
             transform: translateX(-50%);
+            display: none;
+
+            &--revealed {
+                display: block;
+            }
         }
 
         &__delete-card-text {

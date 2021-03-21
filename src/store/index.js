@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    inDragMode: false,
+    cardIsDragged: false,
     cards: [ //an array of card objects
       {
         title: 'Math quiz',
@@ -23,7 +23,7 @@ export default createStore({
   },
   mutations: {
     setDragStatus(state, status) { //status is a boolean
-      state.inDragMode = status;
+      state.cardIsDragged = status;
     },
     addNewCard(state, cardObj) {
       state.cards.push(cardObj);
@@ -44,7 +44,7 @@ export default createStore({
     }
   },
   getters: {
-    getDragStatus: state => state.inDragMode,
+    getDragStatus: state => state.cardIsDragged,
     allCards: state => state.cards,
     getNullCards: state => {
       return state.cards.filter(card => card.category === '');
