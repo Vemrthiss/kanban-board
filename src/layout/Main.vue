@@ -21,11 +21,7 @@
     .main {
         height: 80vh; //testing
         display: grid;
-        grid-template-columns: 70% 1fr;
+        grid-template-columns: 85% 1fr;
         gap: 1rem;
-
-        &__board {
-
-        }
     }
 </style>
