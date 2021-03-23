@@ -1,5 +1,9 @@
 <template>
-    <div class="main__control">
+    <div class="main__control"
+         @dragenter.prevent="cardWithin"
+         @dragover.prevent="cardWithin"
+         @dragleave.prevent="cardOutside"
+         @drop.prevent="cardDropped">
         <p>{{dragged}}</p>
         <button @click="getState">Get state</button>
         <form action="" class="main__control-add">
@@ -29,6 +33,9 @@
             nullCards() {
                 return this.$store.getters.getNullCards;
             },
+            allCards() {
+                return this.$store.getters.allCards;
+            },
             dragged() {
                 return this.$store.getters.getDragStatus;
             }
@@ -48,6 +55,33 @@
                     this.$store.dispatch('addNewCard', newCardObj);
                     this.newCardTitle = ''; //reset the input field
                 }
+            },
+            cardWithin(e) {
+                console.log('card is within boundary');
+            },
+            cardOutside(e) {
+                console.log('card has left boundary');
+            },
+            cardDropped(e) {
+                // delete that card when card is dropped in trashbin
+                console.log('card is dropped');
+                const id = e.dataTransfer.getData('text/plain');
+                console.log(id);
+
+                const targetedCard = this.allCards.find(cardObj => cardObj.id === id);
+                // removes card from its previous category and refreshes that category
+                const removeConfig = {
+                    categoryTitle: targetedCard.category, //the card's old category before changing it in the store below
+                    cardObj: targetedCard
+                }
+                this.$store.dispatch('removeCardFromCategory', removeConfig); //removes card from old category
+
+                // resets the category property of the card
+                const changeConfig = {
+                    id: id,
+                    newCategory: '',
+                }
+                this.$store.dispatch('changeCardCategory', changeConfig);
             }
         },
         components: {

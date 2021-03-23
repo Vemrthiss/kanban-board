@@ -46,27 +46,35 @@
                 console.log('card is dropped');
                 const id = e.dataTransfer.getData('text/plain');
 
-                const targetedCard = this.allCards.find(cardObj => cardObj.id === id);
+                let targetedCard = this.allCards.find(cardObj => cardObj.id === id);
+                const oldCategory = targetedCard.category;
 
-                const addConfig = {
-                    categoryTitle: this.categoryObj.categoryTitle,
-                    cardObj: targetedCard
-                }
-                this.$store.dispatch('addCardToCategory', addConfig); //adds card 
-
-                const removeConfig = {
-                    categoryTitle: targetedCard.category, //the card's old category before changing it in the store below
-                    cardObj: targetedCard
-                }
-                this.$store.dispatch('removeCardFromCategory', removeConfig); //removes card from old category
-                this.cardOverCategory = false; //resets card over category status
-
+                // update category of the card object
                 const changeConfig = {
                     id: id,
                     newCategory: this.categoryObj.categoryTitle, //from props
                 }
                 console.log(changeConfig);
                 this.$store.dispatch('changeCardCategory', changeConfig);
+
+                // get the updated card object AFTER updating it
+                targetedCard = this.allCards.find(cardObj => cardObj.id === id);
+
+                // remove card from old category
+                const removeConfig = {
+                    categoryTitle: oldCategory, //the card's old category before changing it in the store below
+                    cardObj: targetedCard
+                }
+                this.$store.dispatch('removeCardFromCategory', removeConfig); //removes card from old category
+
+                // add card to new category
+                const addConfig = {
+                    categoryTitle: this.categoryObj.categoryTitle,
+                    cardObj: targetedCard
+                }
+                this.$store.dispatch('addCardToCategory', addConfig); //adds card 
+                
+                this.cardOverCategory = false; //resets card over category status
             }
         },
         components: {

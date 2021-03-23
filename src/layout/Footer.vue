@@ -50,6 +50,9 @@
             }
         },
         computed: {
+            allCards() {
+                return this.$store.getters.allCards;
+            },
             cardIsDragged() {
                 return this.$store.getters.getDragStatus;
             }
@@ -68,6 +71,17 @@
                 console.log('card is dropped');
                 const id = e.dataTransfer.getData('text/plain');
                 console.log(id);
+                
+                const targetedCard = this.allCards.find(cardObj => cardObj.id === id);
+                // removes card from its previous category and refreshes that category
+                console.log(targetedCard);
+                const removeConfig = {
+                    categoryTitle: targetedCard.category, //the card's old category before changing it in the store below
+                    cardObj: targetedCard
+                }
+                this.$store.dispatch('removeCardFromCategory', removeConfig); //removes card from old category
+
+                // removes card from the entire store
                 this.$store.dispatch('removeCardById', id);
                 this.cardOverTrash = false; //resets card over trash status
             }

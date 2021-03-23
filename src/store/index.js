@@ -23,6 +23,11 @@ export default createStore({
     ], 
   },
   mutations: {
+    setInitialState(state, initialState) {
+      state.cardIsDragged = initialState.cardIsDragged;
+      state.cards = initialState.cards;
+      state.categories = initialState.categories;
+    },
     setDragStatus(state, status) { //status is a boolean
       state.cardIsDragged = status;
     },
@@ -73,6 +78,9 @@ export default createStore({
     }
   },
   actions: {
+    setInitialState(context, initialState) {
+      context.commit('setInitialState', initialState);
+    },
     setDragStatus(context, status) {
       context.commit('setDragStatus', status);
     },
@@ -100,6 +108,7 @@ export default createStore({
     }
   },
   getters: {
+    getState: state => state,
     getDragStatus: state => state.cardIsDragged,
     allCards: state => state.cards,
     getNullCards: state => {
