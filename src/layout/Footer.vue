@@ -69,6 +69,7 @@
                 const id = e.dataTransfer.getData('text/plain');
                 console.log(id);
                 this.$store.dispatch('removeCardById', id);
+                this.cardOverTrash = false; //resets card over trash status
             }
         }
     }

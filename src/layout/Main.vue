@@ -23,5 +23,6 @@
         display: grid;
         grid-template-columns: 85% 1fr;
         gap: 1rem;
+        padding: 0 1rem;
     }
 </style>
