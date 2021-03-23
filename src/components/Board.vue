@@ -5,7 +5,7 @@
             <AddCategoryBtn @new-category-submitted="addNewCategory"></AddCategoryBtn>
         </form>
         <div class="board-field">
-            <BoardCategory v-for="category of existingCategories" :key="category" :category="category"></BoardCategory>
+            <BoardCategory v-for="categoryObj of existingCategories" :key="categoryObj.categoryTitle" :categoryObj="categoryObj"></BoardCategory>
         </div>
     </div>
 </template>
@@ -29,7 +29,7 @@
             addNewCategory() {
                 if (this.newCategory) { // makes sures the input field isnt empty before submitting form
                     const newCategoryToAdd = this.newCategory;
-                    if (this.existingCategories.includes(newCategoryToAdd)) { // makes sure that the category has not already been added
+                    if (this.existingCategories.find(categoryObj => categoryObj.categoryTitle === newCategoryToAdd)) { // makes sure that the category has not already been added
                         alert('This category has already been added!');
                     } else { // if category hasnt been added, add it to the store
                         console.log(newCategoryToAdd);
