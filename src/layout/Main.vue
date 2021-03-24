@@ -10,14 +10,6 @@
     import Control from '../components/Control'
 
     export default {
-        computed: {
-            storeState() {
-                return this.$store.getters.getState;
-            }
-        },
-        mounted() {
-            console.log(Object.keys(this.storeState));
-        },
         components: {
             Board,
             Control

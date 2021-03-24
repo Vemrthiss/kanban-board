@@ -4,16 +4,11 @@ export default createStore({
   state: {
     cardIsDragged: false,
     cards: [ //an array of card objects
-      {
-        title: 'Math quiz',
-        category: '',
-        id: '1' //id to be a string
-      },
-      {
-        title: 'Physics homework',
-        category: '',
-        id: '2'
-      }
+      // {
+      //   title: 'Math quiz',
+      //   category: '',
+      //   id: '1' //id to be a string
+      // }
     ],
     categories: [ // an ordered list of category objects? (order defines render order)
       // {
@@ -108,7 +103,6 @@ export default createStore({
     }
   },
   getters: {
-    getState: state => state,
     getDragStatus: state => state.cardIsDragged,
     allCards: state => state.cards,
     getNullCards: state => {
