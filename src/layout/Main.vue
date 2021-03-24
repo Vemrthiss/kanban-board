@@ -19,9 +19,9 @@
 
 <style lang="scss" scoped>
     .main {
-        height: 80vh; //testing
+        height: 85%; //testing
         display: grid;
-        grid-template-columns: 85% 1fr;
+        grid-template-columns: 80% 1fr;
         gap: 1rem;
         padding: 0 1rem;
     }

@@ -13,7 +13,7 @@
 
 <style lang="scss" scoped>
     .header {
-        height: 10vh;
+        height: 10%;
         text-align: center;
     }
 </style>

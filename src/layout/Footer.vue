@@ -91,7 +91,7 @@
 
 <style lang="scss" scoped>
     .footer {
-        height: 10vh; //testing
+        height: 5%;
         display: flex;
         justify-content: space-between;
         position: relative; //for abs positioning of rubbish icon
@@ -104,8 +104,8 @@
         &__icon {
             transition: all .3s;
             cursor: pointer;
-            height: 4rem;
-            width: 4rem;
+            height: 2.5rem;
+            width: 2.5rem;
 
             &:hover {
                 transform: scale(1.1);

@@ -3,13 +3,11 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 import Home from './layout/Home';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
     Home
   }
 }
@@ -31,5 +29,13 @@ export default {
   html {
     box-sizing: border-box;
     font-size: 62.5%; // defining 1rem = 10px
+  }
+
+  #app {
+    position: relative; // for abs positioning of child .app-container
+    height: 100vh; // because child is set as position absolute, needs a height
+    background: #FFAFBD;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ffc3a0, #FFAFBD);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ffc3a0, #FFAFBD); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
 </style>

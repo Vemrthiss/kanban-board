@@ -4,7 +4,8 @@
          @dragover.prevent="cardWithin"
          @dragleave.prevent="cardOutside"
          @drop.prevent="cardDropped">
-        <p>{{categoryObj.categoryTitle}}</p>
+        <p>{{categoryTitle}}</p>
+        <button class="board-cateogry__delete-btn" @click="deleteCategory">Delete Category</button>
 
         <div class="board-cards">
             <Card v-for="card of validCards" :key="card.id" :cardDetails="card"></Card>
@@ -22,17 +23,23 @@
             }
         },
         computed: {
+            categoryTitle() {
+                return this.categoryObj.categoryTitle;
+            },
             allCards() {
                 return this.$store.getters.allCards;
             },
             validCards() { //a list of card objects in that category
-                return this.$store.getters.getCategoryCards(this.categoryObj.categoryTitle);
+                return this.$store.getters.getCategoryCards(this.categoryTitle);
             }
         },
         props: {
             categoryObj: Object
         },
         methods: {
+            deleteCategory(e) {
+                this.$store.dispatch('removeCategory', this.categoryTitle);
+            },
             cardWithin(e) {
                 this.cardOverCategory = true;
                 console.log('card is within boundary');
@@ -52,7 +59,7 @@
                 // update category of the card object
                 const changeConfig = {
                     id: id,
-                    newCategory: this.categoryObj.categoryTitle, //from props
+                    newCategory: this.categoryTitle, //from props-> computed
                 }
                 console.log(changeConfig);
                 this.$store.dispatch('changeCardCategory', changeConfig);
@@ -69,7 +76,7 @@
 
                 // add card to new category
                 const addConfig = {
-                    categoryTitle: this.categoryObj.categoryTitle,
+                    categoryTitle: this.categoryTitle,
                     cardObj: targetedCard
                 }
                 this.$store.dispatch('addCardToCategory', addConfig); //adds card 

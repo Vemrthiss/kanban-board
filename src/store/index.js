@@ -41,7 +41,13 @@ export default createStore({
       state.categories.push(newCategoryObj);
     },
     removeCategory(state, categoryToRemove) {
+      const categoryCardsToRemove = state.categories.find(categoryObj => categoryObj.categoryTitle === categoryToRemove).categoryCards;
       state.categories = state.categories.filter(categoryObj => categoryObj.categoryTitle !== categoryToRemove);
+      let stateCardsCopy = [...state.cards];
+      categoryCardsToRemove.forEach(el => {
+        stateCardsCopy = stateCardsCopy.filter(card => card.id !== el.id);
+      });
+      state.cards = stateCardsCopy;
     },
     changeCardCategory(state, changeConfig) {
       const {id, newCategory} = changeConfig;

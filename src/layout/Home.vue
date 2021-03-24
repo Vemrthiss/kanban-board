@@ -1,7 +1,9 @@
 <template>
-    <Header></Header>
-    <Main v-bind="$attrs"></Main>
-    <Footer></Footer>
+    <div class="app-container">
+        <Header></Header>
+        <Main></Main>
+        <Footer></Footer>
+    </div>
 </template>
 
 <script>
@@ -81,5 +83,17 @@
 </script>
 
 <style lang="scss" scoped>
-
+    .app-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 90vh;
+        width: 90vw;
+        background-color:#FFFAFA;
+        // padding: 5px;
+        border: 1px solid rgba(#eeeeee, 1);
+        border-radius: 1.5rem;
+        box-shadow: 0 0 2rem rgba(0,0,0, .5);
+    }
 </style>
