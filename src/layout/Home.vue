@@ -44,21 +44,23 @@
                 console.log(initialState);
                 this.$store.dispatch('setInitialState', initialState);
             });
-
-            window.addEventListener('pagehide', async (e) => {
-                let response;
-                const currentState = {
-                    id: "state", //primary_key identifier for get/put operation
-                    cardIsDragged: this.storeCardIsDragged,
-                    cards: this.storeCards,
-                    categories: this.storeCategories
-                }
-                
-                try {
-                    response = await db.state.put(currentState);
-                } catch (error) {
-                    console.log(error);
-                }
+            // make sure data is put for every possible case of user session ending
+            ['pagehide', 'beforeunload'].forEach(eventToListen => {
+                window.addEventListener(eventToListen, async (e) => {
+                    let response;
+                    const currentState = {
+                        id: "state", //primary_key identifier for get/put operation
+                        cardIsDragged: this.storeCardIsDragged,
+                        cards: this.storeCards,
+                        categories: this.storeCategories
+                    }
+                    
+                    try {
+                        response = await db.state.put(currentState);
+                    } catch (error) {
+                        console.log(error);
+                    }
+                });
             });
 
             document.addEventListener('visibilitychange', async (e) => {
@@ -88,7 +90,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        height: 90vh;
+        height: 95vh;
         width: 90vw;
         background-color:#FFFAFA;
         // padding: 5px;

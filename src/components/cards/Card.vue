@@ -24,6 +24,7 @@
                 this.$store.dispatch('setDragStatus', this.dragStatus);
             },
             dragCard(e) {
+                console.log(this.$store.state); //testing
                 this.setDragStatus(true);
                 e.dataTransfer.setData('text/plain', this.cardDetails.id);
                 setTimeout(() => { //to enable the dragging of the card and hiding its original position
@@ -45,6 +46,13 @@
 <style lang="scss" scoped>
     .card {
         cursor: grab;
+        border: 1px solid rgba(#eeeeee, .6);
+        border-radius: 1rem;
+        width: 95%;
+        background-color: #ffccd5;
+        text-align: center;
+        font-size: 1.4rem;
+        //color: white;
 
         &--dragged {
             display: none; //hide the original card while dragging

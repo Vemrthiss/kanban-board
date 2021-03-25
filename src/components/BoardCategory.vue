@@ -1,11 +1,16 @@
 <template>
-    <div class="board-category"
+    <div class="board-category" :class="{'board-category--hovered': cardOverCategory}"
          @dragenter.prevent="cardWithin"
          @dragover.prevent="cardWithin"
          @dragleave.prevent="cardOutside"
          @drop.prevent="cardDropped">
-        <p>{{categoryTitle}}</p>
-        <button class="board-cateogry__delete-btn" @click="deleteCategory">Delete Category</button>
+        <div class="board-category__header">
+            <!-- <button class="board-cateogry__move board-category__move--left" @click="moveCategory">Left</button> -->
+            <p class="board-category__title">{{categoryTitle}}</p>
+            <BtnDanger @click="deleteCategory" :customClass="'board-category__delete-btn'">Delete Category</BtnDanger>
+            <!-- <button class="board-cateogry__move board-category__move--right" @click="moveCategory">right</button> -->
+        </div>
+        
 
         <div class="board-cards">
             <Card v-for="card of validCards" :key="card.id" :cardDetails="card"></Card>
@@ -15,11 +20,12 @@
 
 <script>
     import Card from './cards/Card';
+    import BtnDanger from './buttons/BtnDanger';
 
     export default {
         data() {
             return {
-                cardOverCategory: false
+                cardOverCategory: false,
             }
         },
         computed: {
@@ -40,6 +46,13 @@
             deleteCategory(e) {
                 this.$store.dispatch('removeCategory', this.categoryTitle);
             },
+            // moveCategory(e) { //to dispatch actions to move category along the list (categories at ends only can move in the other direction)
+            //     if (e.target.classList.contains('board-category__move--left')) { //move category to left
+            //         console.log('left');
+            //     } else {
+            //         console.log('right');
+            //     }
+            // },
             cardWithin(e) {
                 this.cardOverCategory = true;
                 console.log('card is within boundary');
@@ -82,10 +95,14 @@
                 this.$store.dispatch('addCardToCategory', addConfig); //adds card 
                 
                 this.cardOverCategory = false; //resets card over category status
+            },
+            test(e) {
+                console.log('clicked');
             }
         },
         components: {
-            Card
+            Card,
+            BtnDanger
         }
     }
 </script>
@@ -93,7 +110,38 @@
 <style lang="scss" scoped>
     .board-category {
         width: 15vw;
-        border: 1px solid black;
+        border: 1.5px solid black;
+        border-radius: 1rem;
         text-align: center;
+        margin-right: 2rem;
+        transition: all .3s;
+
+        &--hovered {
+            border: 1.5px solid #ff8095;
+            transform: scale(1.02);
+        }
+
+        &__header {
+            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            // position: relative; // for abs positioning of left/right btns
+        }
+
+        &__title {
+            margin: 0;
+            margin-right: 1.5rem;
+        }
+
+        // &__move {
+        //     position: absolute;
+        // }
+    }
+
+    .board-cards {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 </style>

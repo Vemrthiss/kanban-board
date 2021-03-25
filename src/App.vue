@@ -31,6 +31,16 @@ export default {
     font-size: 62.5%; // defining 1rem = 10px
   }
 
+  p {
+    margin-bottom: 0; //counter default style of 1rem margin btm
+  }
+
+  .btn {
+    outline: none;
+    cursor: pointer;
+    border: none;
+  }
+
   #app {
     position: relative; // for abs positioning of child .app-container
     height: 100vh; // because child is set as position absolute, needs a height

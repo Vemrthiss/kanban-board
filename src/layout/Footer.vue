@@ -4,22 +4,25 @@
             <p class="footer__text-content">Copyright &copy; Joel Tay</p>
         </div>
 
-        <div class="footer__delete-card"
-             :class="{'footer__delete-card--revealed': cardIsDragged}"
-             @dragenter.prevent="cardWithin"
-             @dragover.prevent="cardWithin"
-             @dragleave.prevent="cardOutside"
-             @drop.prevent="cardDropped">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash footer__icon footer__icon-rubbish" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                <line x1="4" y1="7" x2="20" y2="7" />
-                <line x1="10" y1="11" x2="10" y2="17" />
-                <line x1="14" y1="11" x2="14" y2="17" />
-                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-            </svg>
-            <p class="footer__delete-card-text" :style=" cardOverTrash ? {opacity: 1} : '' ">Move to trash</p>
-        </div>
+        <transition name="trashcan">
+            <div class="footer__delete-card"
+                v-if="cardIsDragged"
+                @dragenter.prevent="cardWithin"
+                @dragover.prevent="cardWithin"
+                @dragleave.prevent="cardOutside"
+                @drop.prevent="cardDropped">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash footer__icon footer__icon-rubbish" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <line x1="4" y1="7" x2="20" y2="7" />
+                    <line x1="10" y1="11" x2="10" y2="17" />
+                    <line x1="14" y1="11" x2="14" y2="17" />
+                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                </svg>
+                <p class="footer__delete-card-text" :style=" cardOverTrash ? {opacity: 1} : '' ">Move to trash</p>
+            </div>
+        </transition>
+        
 
         <div class="footer__icon-group">
             <a class="footer__icon footer__icon-github" :href="githubLink">
@@ -91,11 +94,15 @@
 
 <style lang="scss" scoped>
     .footer {
-        height: 5%;
+        height: 7.5%;
         display: flex;
         justify-content: space-between;
         position: relative; //for abs positioning of rubbish icon
-        padding: 0 1.5rem;
+        padding: 1rem 1.5rem;
+
+        &__text-content {
+            font-size: 1.4rem;
+        }
 
         &__icon-group {
             display: flex;
@@ -114,24 +121,30 @@
 
         &__delete-card {
             position: absolute;
-            top: 0;
+            top: 60%;
             left: 50%;
-            transform: translateX(-50%);
-            display: none;
-
-            &--revealed {
-                display: block;
-            }
+            transform: translate(-50%, -50%);
+            opacity: 1;
         }
 
         &__delete-card-text {
             position: absolute;
             left: 50%;
-            bottom: -2rem;
+            top: -70%;
             width: max-content;
-            transform: translateX(-50%);
+            transform: translate(-50%);
             opacity: 0;
             transition: opacity .3s;
+            font-size: 1.4rem;
         }
+    }
+
+    .trashcan-enter-from, .trashcan-leave-to {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+    }
+
+    .trashcan-enter-active, .trashcan-leave-active {
+        transition: all .3s;
     }
 </style>

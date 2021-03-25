@@ -4,10 +4,9 @@
          @dragover.prevent="cardWithin"
          @dragleave.prevent="cardOutside"
          @drop.prevent="cardDropped">
-        <p>{{dragged}}</p>
         <button @click="getState">Get state</button>
         <form action="" class="main__control-add">
-            <input type="text" name="new-card-title" placeholder="Add a new card" v-model="newCardTitle">
+            <input type="text" name="new-card-title" placeholder="Add a new card" v-model="newCardTitle" class="main__control-input">
             <AddCard @new-card-submitted="submitNewCard"></AddCard>
         </form>
         
@@ -94,5 +93,22 @@
 <style lang="scss" scoped>
     .main__control {
         overflow-y: scroll;
+    }
+
+    .main__control-add {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .main__control-input {
+        border-radius: 1rem;
+        border: 2px solid #ff8095;
+        padding: .4rem 1rem;
+        width: 80%;
+        font-size: 1.2rem;
+        outline: none;
     }
 </style>
