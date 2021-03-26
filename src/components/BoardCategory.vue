@@ -13,7 +13,9 @@
         
 
         <div class="board-cards">
-            <Card v-for="card of validCards" :key="card.id" :cardDetails="card"></Card>
+            <transition-group name="card-transition">
+                <Card v-for="card of validCards" :key="card.id" :cardDetails="card"></Card>
+            </transition-group>
         </div>
     </div>
 </template>
@@ -135,8 +137,7 @@
         &__title {
             margin: 0;
             margin-right: 1.5rem;
-            text-transform: uppercase;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             letter-spacing: .4px;
             width: 60%;
         }

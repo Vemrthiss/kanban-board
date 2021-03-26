@@ -5,7 +5,9 @@
             <AddBtn @new-category-submitted="addNewCategory" :customClass="'add-category'"></AddBtn>
         </form>
         <div class="board-field">
-            <BoardCategory v-for="categoryObj of existingCategories" :key="categoryObj.categoryTitle" :categoryObj="categoryObj"></BoardCategory>
+            <transition-group name="category">
+                <BoardCategory v-for="categoryObj of existingCategories" :key="categoryObj.categoryTitle" :categoryObj="categoryObj"></BoardCategory>
+            </transition-group>
         </div>
     </div>
 </template>
@@ -50,7 +52,6 @@
     .board {
         overflow-x: scroll;
         overflow-y: scroll;
-        //width: 90vw;
         display: grid;
         grid-template-rows: 10% 1fr;
 
@@ -65,7 +66,7 @@
         }
 
         &__input {
-            width: 25%;
+            width: 30rem;
         }
 
         & > * {
@@ -75,5 +76,29 @@
 
     .board-field {
         display: flex;
+    }
+
+    .category-enter-active, .category-leave-active {
+        transition: all 1s;
+    }
+
+    .category-enter-from, .category-leave-to {
+        opacity: 0;
+    }
+
+    .category-enter-from {
+        transform: translateX(5rem);
+    }
+
+    .category-leave-to {
+        transform: translateX(-5rem);
+    }
+
+    .category-leave-active {
+        position: absolute;
+    }
+
+    .category-move {
+        transition: transform 1s;
     }
 </style>

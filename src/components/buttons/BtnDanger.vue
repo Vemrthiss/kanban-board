@@ -17,9 +17,9 @@
         display: block;
         overflow: hidden;
         position: relative;
-        background-color: #cccccc;
-        transform: translate(0); //weird workaround for the below effect to work
+        background-color: rgba(#cccccc, .6);
         transition: color .3s;
+        transform: translate(0); //weird workaround for the below effect to work
 
         &:hover {
             color: white;

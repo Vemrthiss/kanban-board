@@ -41,4 +41,21 @@ export default {
     background: linear-gradient(to right, #ffc3a0, #FFAFBD); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     font-family: 'Vollkorn', serif;
   }
+  
+  // for transition-group tag "global" styles for cards
+  .card-transition-enter-active {
+    transition: all .7s;
+  }
+
+  .card-transition-enter-from {
+    opacity: 0;
+  }
+
+  .card-transition-enter-from {
+    transform: translateY(2rem);
+  }
+
+  .card-transition-move {
+    transition: transform 1s;
+  }
 </style>

@@ -11,7 +11,9 @@
         </form>
         
         <div class="main__control-cards">
-            <Card v-for="card of nullCards" :key="card.id" :cardDetails="card"></Card>
+            <transition-group name="card-transition">
+                <Card v-for="card of nullCards" :key="card.id" :cardDetails="card"></Card>
+            </transition-group>
         </div>
     </div>
 </template>
