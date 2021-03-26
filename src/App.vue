@@ -62,8 +62,4 @@ export default {
   .card-transition-enter-from {
     transform: translateY(2rem);
   }
-
-  .card-transition-move {
-    transition: transform 1s;
-  }
 </style>
