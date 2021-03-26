@@ -1,7 +1,7 @@
 # kanban-board
 
 ## Deployment
-Site deployed [here] (vigorous-pike-8d0385.netlify.app)
+Site deployed [here](vigorous-pike-8d0385.netlify.app)
 
 ## Known Issues/Potential Improvement
 Webapp uses drag-and-drop functionality for moving the cards around, which is not as appropriate for mobile.
