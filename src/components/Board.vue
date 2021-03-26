@@ -59,13 +59,17 @@
             align-items: center;
             align-self: start;
         }
-        
-        &__text {
-            width: 100vw; //testing
-        }
 
         &__input {
-            width: 30rem;
+            width: 20rem;
+
+            @media only screen and (max-width: 85em) {
+                width: 30rem;
+            }
+
+            @media only screen and (max-width: 75em) {
+                width: 25rem;
+            }
         }
 
         & > * {

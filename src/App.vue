@@ -20,7 +20,15 @@ export default {
 
   html {
     box-sizing: border-box;
-    font-size: 62.5%; // defining 1rem = 10px
+    font-size: 100%; // defining 1rem = 16px for desktop
+
+    @media only screen and (max-width: 85em) {
+      font-size: 62.5%; // defining 1rem = 10px
+    }
+
+    @media only screen and (max-width: 56em) { // about 900px
+      font-size: 50%; // defining 1rem = 8px
+    }
   }
 
   p {
