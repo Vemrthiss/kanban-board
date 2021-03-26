@@ -137,7 +137,19 @@
 
         &__delete-btn {
             width: 40%;
-            font-size: 1.2rem;
+            font-size: .8rem;
+
+            @media only screen and (max-width: 90em) {
+                font-size: 1.2rem;
+            }
+
+            @media only screen and (max-width: 75em) {
+                font-size: 1rem;
+            }
+
+            @media only screen and (max-width: 56em) {
+                font-size: .8rem;
+            }
         }
 
         // &__move {

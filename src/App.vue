@@ -22,7 +22,7 @@ export default {
     box-sizing: border-box;
     font-size: 100%; // defining 1rem = 16px for desktop
 
-    @media only screen and (max-width: 85em) {
+    @media only screen and (max-width: 90em) {
       font-size: 62.5%; // defining 1rem = 10px
     }
 
