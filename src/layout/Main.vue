@@ -19,7 +19,7 @@
 
 <style lang="scss">
     .main {
-        height: 82.5%; //testing
+        height: 82.5%;
         display: grid;
         grid-template-columns: 80% 1fr;
         gap: 1rem;

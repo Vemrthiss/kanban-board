@@ -32,7 +32,6 @@
             }
         },
         mounted() {
-            console.log('component mounted');
             const db = new Dexie('kanbanDB');
             db.version(1).stores({
                 state: 'id, cardIsDragged, cards, categories'
@@ -41,7 +40,6 @@
             window.addEventListener('load', async (e) => {
                 // if page is loaded/reloaded, get data
                 const initialState = await db.state.get('state');
-                console.log(initialState);
                 this.$store.dispatch('setInitialState', initialState);
             });
             // make sure data is put for every possible case of user session ending
@@ -58,7 +56,7 @@
                     try {
                         response = await db.state.put(currentState);
                     } catch (error) {
-                        console.log(error);
+                        alert(error);
                     }
                 });
             });
@@ -76,7 +74,7 @@
                     try {
                         response = await db.state.put(currentState);
                     } catch (error) {
-                        console.log(error);
+                        alert(error);
                     }
                 }
             });

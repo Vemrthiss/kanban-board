@@ -4,7 +4,6 @@
          @dragover.prevent="cardWithin"
          @dragleave.prevent="cardOutside"
          @drop.prevent="cardDropped">
-        <!-- <button @click="getState">Get state</button> -->
         <form action="" class="main__control-add">
             <input type="text" name="new-card-title" placeholder="Add a new card" v-model="newCardTitle" class="main__input main__control-input">
             <AddBtn @new-card-submitted="submitNewCard" :customClass="'add-card'"></AddBtn>
@@ -42,9 +41,6 @@
             }
         },
         methods: {
-            getState(e) { //testing
-                console.log(this.$store.state);
-            },
             submitNewCard(e) {
                 if (this.newCardTitle) { //checks if title is non-empty
                     const newCardObj = {
@@ -58,16 +54,14 @@
                 }
             },
             cardWithin(e) {
-                console.log('card is within boundary');
+                console.log('card is within control');
             },
             cardOutside(e) {
-                console.log('card has left boundary');
+                console.log('card has left control');
             },
             cardDropped(e) {
                 // delete that card when card is dropped in trashbin
-                console.log('card is dropped');
                 const id = e.dataTransfer.getData('text/plain');
-                console.log(id);
 
                 const targetedCard = this.allCards.find(cardObj => cardObj.id === id);
                 // removes card from its previous category and refreshes that category

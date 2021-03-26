@@ -64,21 +64,17 @@
         methods: {
             cardWithin(e) {
                 this.cardOverTrash = true;
-                console.log('card is within boundary');
             },
             cardOutside(e) {
                 this.cardOverTrash = false;
-                console.log('card has left boundary');
             },
             cardDropped(e) {
                 // delete that card when card is dropped in trashbin
-                console.log('card is dropped');
                 const id = e.dataTransfer.getData('text/plain');
                 console.log(id);
                 
                 const targetedCard = this.allCards.find(cardObj => cardObj.id === id);
                 // removes card from its previous category and refreshes that category
-                console.log(targetedCard);
                 const removeConfig = {
                     categoryTitle: targetedCard.category, //the card's old category before changing it in the store below
                     cardObj: targetedCard

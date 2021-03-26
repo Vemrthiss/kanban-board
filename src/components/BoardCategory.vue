@@ -57,15 +57,12 @@
             // },
             cardWithin(e) {
                 this.cardOverCategory = true;
-                console.log('card is within boundary');
             },
             cardOutside(e) {
                 this.cardOverCategory = false;
-                console.log('card has left boundary');
             },
             cardDropped(e) {
                 // change the card's category when that card when card is dropped in the respective regions
-                console.log('card is dropped');
                 const id = e.dataTransfer.getData('text/plain');
 
                 let targetedCard = this.allCards.find(cardObj => cardObj.id === id);
@@ -76,7 +73,6 @@
                     id: id,
                     newCategory: this.categoryTitle, //from props-> computed
                 }
-                console.log(changeConfig);
                 this.$store.dispatch('changeCardCategory', changeConfig);
 
                 // get the updated card object AFTER updating it
@@ -97,9 +93,6 @@
                 this.$store.dispatch('addCardToCategory', addConfig); //adds card 
                 
                 this.cardOverCategory = false; //resets card over category status
-            },
-            test(e) {
-                console.log('clicked');
             }
         },
         components: {

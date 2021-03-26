@@ -34,7 +34,6 @@
                     if (this.existingCategories.find(categoryObj => categoryObj.categoryTitle === newCategoryToAdd)) { // makes sure that the category has not already been added
                         alert('This category has already been added!');
                     } else { // if category hasnt been added, add it to the store
-                        console.log(newCategoryToAdd);
                         this.$store.dispatch('addNewCategory', newCategoryToAdd); //adds new category to store
                     }
                     this.newCategory = ''; //reset the text input field
