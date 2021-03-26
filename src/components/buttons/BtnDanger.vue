@@ -18,7 +18,12 @@
         overflow: hidden;
         position: relative;
         background-color: #cccccc;
-        transform: translate(0); //weird solution for the below effect to work
+        transform: translate(0); //weird workaround for the below effect to work
+        transition: color .3s;
+
+        &:hover {
+            color: white;
+        }
 
         &:hover::before {
             width: 100%;

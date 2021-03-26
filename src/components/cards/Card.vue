@@ -1,5 +1,5 @@
 <template>
-    <div class="card" draggable="true" @dragstart="dragCard" @dragend="stopDragCard">
+    <div class="card" :class="customClass" draggable="true" @dragstart="dragCard" @dragend="stopDragCard">
         <div class="card-body">
             <p>{{ cardDetails.title }}</p>
         </div>
@@ -17,6 +17,7 @@
         },
         props: {
             cardDetails: Object,
+            customClass: String
         },
         methods: {
             setDragStatus(status) {
@@ -44,6 +45,23 @@
 </script>
 
 <style lang="scss" scoped>
+    @keyframes pulsate {
+        0% {
+            transform: scale(1);
+            box-shadow: none;
+        }
+        
+        50% {
+            transform: scale(1.05);
+            box-shadow: 0 1rem 4rem rgba(0,0,0, 0.25);
+        }
+
+        100% {
+            transform: scale(1);
+            box-shadow: none;
+        }
+    }
+
     .card {
         cursor: grab;
         border: 1px solid rgba(#eeeeee, .6);
@@ -54,9 +72,17 @@
         font-size: 1.4rem;
         //color: white;
 
+        &:hover {
+            animation: pulsate 1s infinite;
+        }
+
         &--dragged {
             display: none; //hide the original card while dragging
             cursor: grabbing; //doesnt work
+        }
+
+        &:not(:last-child) {
+            margin-bottom: 1rem;
         }
     }
 </style>

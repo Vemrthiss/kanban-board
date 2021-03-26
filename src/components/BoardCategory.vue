@@ -110,14 +110,14 @@
 <style lang="scss" scoped>
     .board-category {
         width: 15vw;
-        border: 1.5px solid black;
+        border: 1.5px solid #ff8095;
         border-radius: 1rem;
         text-align: center;
         margin-right: 2rem;
         transition: all .3s;
 
         &--hovered {
-            border: 1.5px solid #ff8095;
+            border: 2px solid #ff1a40;
             transform: scale(1.02);
         }
 
@@ -126,12 +126,24 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 1rem;
+            padding-top: 0;
+            border-bottom: 1px solid #eeeeee;
             // position: relative; // for abs positioning of left/right btns
         }
 
         &__title {
             margin: 0;
             margin-right: 1.5rem;
+            text-transform: uppercase;
+            font-size: 1.4rem;
+            letter-spacing: .4px;
+            width: 60%;
+        }
+
+        &__delete-btn {
+            width: 40%;
+            font-size: 1.2rem;
         }
 
         // &__move {

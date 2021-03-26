@@ -4,10 +4,10 @@
          @dragover.prevent="cardWithin"
          @dragleave.prevent="cardOutside"
          @drop.prevent="cardDropped">
-        <button @click="getState">Get state</button>
+        <!-- <button @click="getState">Get state</button> -->
         <form action="" class="main__control-add">
-            <input type="text" name="new-card-title" placeholder="Add a new card" v-model="newCardTitle" class="main__control-input">
-            <AddCard @new-card-submitted="submitNewCard"></AddCard>
+            <input type="text" name="new-card-title" placeholder="Add a new card" v-model="newCardTitle" class="main__input main__control-input">
+            <AddBtn @new-card-submitted="submitNewCard" :customClass="'add-card'"></AddBtn>
         </form>
         
         <div class="main__control-cards">
@@ -19,7 +19,7 @@
 <script>
     import { v4 as uuidv4 } from 'uuid';
 
-    import AddCard from './buttons/AddCardBtn';
+    import AddBtn from './buttons/AddBtn';
     import Card from './cards/Card';
 
     export default {
@@ -84,7 +84,7 @@
             }
         },
         components: {
-            AddCard,
+            AddBtn,
             Card
         }
     }
@@ -104,11 +104,6 @@
     }
 
     .main__control-input {
-        border-radius: 1rem;
-        border: 2px solid #ff8095;
-        padding: .4rem 1rem;
         width: 80%;
-        font-size: 1.2rem;
-        outline: none;
     }
 </style>

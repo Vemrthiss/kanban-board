@@ -1,8 +1,8 @@
 <template>
     <div class="main__board board">
         <form action="" class="board__category-form">
-            <input type="text" placeholder="Add a new category" v-model="newCategory">
-            <AddCategoryBtn @new-category-submitted="addNewCategory"></AddCategoryBtn>
+            <input type="text" placeholder="Add a new category" v-model="newCategory" class="main__input board__input">
+            <AddBtn @new-category-submitted="addNewCategory" :customClass="'add-category'"></AddBtn>
         </form>
         <div class="board-field">
             <BoardCategory v-for="categoryObj of existingCategories" :key="categoryObj.categoryTitle" :categoryObj="categoryObj"></BoardCategory>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-    import AddCategoryBtn from './buttons/AddCategoryBtn';
+    import AddBtn from './buttons/AddBtn';
     import BoardCategory from './BoardCategory';
 
     export default {
@@ -40,7 +40,7 @@
             }
         },
         components: {
-            AddCategoryBtn,
+            AddBtn,
             BoardCategory
         }
     }
@@ -53,9 +53,23 @@
         //width: 90vw;
         display: grid;
         grid-template-rows: 10% 1fr;
+
+        &__category-form {
+            display: flex;
+            align-items: center;
+            align-self: start;
+        }
         
         &__text {
             width: 100vw; //testing
+        }
+
+        &__input {
+            width: 25%;
+        }
+
+        & > * {
+            padding-left: 1rem;
         }
     }
 
